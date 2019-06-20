@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Linking Bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+        integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <!--Linking Google Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Ubuntu" rel="stylesheet">
@@ -14,41 +16,46 @@
     <title>Kevin's Homepage</title>
     <style>
         body {
-            height: 100vh;
-            background-size: cover;
-            background-repeat: no-repeat;
             background-position: center;
-            margin: 0;
+            background-repeat: no-repeat;
+            background-size: cover;
             color: white;
+            height: 100vh;
+            margin: 0;
             transition: background-image 3s;
             transition-delay: 3s;
         }
+
         .center {
+            background-color: rgba(108, 117, 125, 0.3);
+            padding: 15px;
             position: absolute;
+            text-align: center;
             top: 40%;
             width: 100%;
-            text-align: center;
-            background-color: rgba(108,117,125,0.3);
-            padding: 15px;
         }
+
         #time {
+            font-family: 'Open Sans Condensed', sans-serif;
             font-size: 8em;
             font-weight: 600;
             margin-bottom: -10px;
-            font-family: 'Open Sans Condensed', sans-serif;
         }
+
         #date {
             display: inline-block;
             font-family: 'Ubuntu', sans-serif;
         }
+
         .input-group {
-            width: 90%;
-            max-width: 750px;
             margin: auto;
+            max-width: 750px;
             top: 25%;
+            width: 90%;
         }
     </style>
 </head>
+
 <body>
     <form class="input-group">
         <input type="text" class="form-control" placeholder="I MADE THIS - KEVIN YANG :)">
@@ -61,53 +68,55 @@
         <h2 id="date"></h2>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script type="text/javascript">
-        $(".input-group").submit(function(event) {
+        $(".input-group").submit(function (event) {
             event.preventDefault();
-        var searchTerm = $("input").val();
-        window.open(`http://www.google.com/search?q=${searchTerm}`);
+            var searchTerm = $("input").val();
+            window.open(`http://www.google.com/search?q=${searchTerm}`);
         })
-       
-function getWallpaper() {
-    var key = "f9914d2594035aa2a981e0f4f152f5e8c3302bafa1efdb36fb8a21a6d695452d";
-    $.ajax({
-        url: "https://api.unsplash.com/photos/random?query=puppy&client_id=" + key,
-        method: "GET"
-    }).then(function(data) {
-        $("body").css("background-image", `url(${data.urls.full})`)
-    })
-}
-//Displays the times Hours:Minutes:Seconds
-function getTime() {
-    function checkTime(i) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
-}
 
-function startTime() {
-  var today = new Date();
-  var hours = today.getHours();
-  var minutes = today.getMinutes();
-  var seconds = today.getSeconds();
-  var date = today.toDateString();
- 
-  minutes = checkTime(minutes);
-  seconds = checkTime(seconds);
-  $("#date").html(date);
-  $("#time").html(`${hours}h:${minutes}m:${seconds}s`)
-  setTimeout(function() {
-    startTime()
-  }, 500);
-}
-startTime();
-}
+        function getWallpaper() {
+            var key = "f9914d2594035aa2a981e0f4f152f5e8c3302bafa1efdb36fb8a21a6d695452d";
+            $.ajax({
+                url: "https://api.unsplash.com/photos/random?query=puppy&client_id=" + key,
+                method: "GET"
+            }).then(function (data) {
+                $("body").css("background-image", `url(${data.urls.full})`)
+            })
+        }
+        //Displays the times Hours:Minutes:Seconds
+        function getTime() {
+            function checkTime(i) {
+                if (i < 10) {
+                    i = "0" + i;
+                }
+                return i;
+            }
 
-getTime();
-getWallpaper();
+            function startTime() {
+                var today = new Date();
+                var hours = today.getHours();
+                var minutes = today.getMinutes();
+                var seconds = today.getSeconds();
+                var date = today.toDateString();
+
+                minutes = checkTime(minutes);
+                seconds = checkTime(seconds);
+                $("#date").html(date);
+                $("#time").html(`${hours}h:${minutes}m:${seconds}s`)
+                setTimeout(function () {
+                    startTime()
+                }, 500);
+            }
+            startTime();
+        }
+
+        getTime();
+        getWallpaper();
 
     </script>
 </body>
+
 </html>
